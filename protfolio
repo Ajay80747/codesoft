@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+section {
+    padding: 2rem;
+    margin: 1rem 0;
+}
+
+section#about img {
+    max-width: 150px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+}
+
+section#skills ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+section#skills ul li {
+    background: #f4f4f4;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+section#projects .project {
+    margin-bottom: 2rem;
+}
+
+section#projects .project img {
+    max-width: 100%;
+    height: auto;
+}
+
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+</style>
+<body>
+    <header>
+        <h1>G AJAY KUMAR</h1>
+        <p>Iam my self g ajay kumar from CBIT college studying AIML branch in CBIT my skills are DSA IN PYTHON , PYTHON ,C ,HTML ,CSS,JAVASCRIPT </p>
+    </header>
+    
+    <section id="about">
+        <h2>About Me</h2>
+        <img src="" alt="ajay kuamr">
+        <p>BIO EXPERIENCE OF YOUR DETAILED VERSION .</p>
+    </section>
+    
+    <section id="skills">
+        <h2>Skills</h2>
+        <ul>
+            <li>Skill 1</li>
+            <li>Skill 2</li>
+            <li>Skill 3</li>
+        </ul>
+    </section>
+    
+    <section id="projects">
+        <h2>CODE SOFT</h2>
+        <div class="project">
+            <h3>PROTFOLIO</h3>
+            <img src="project-image.jpg" alt="Project Title">
+            <p>THE PROJECT BELONGS TO THE CODE SOFT VIRTUAL INTERNSHIP.</p>
+        </div>
+    </section>
+    
+    <section id="resume">
+        <h2>Resume</h2>
+        <a href="your-resume.pdf" download>Download My Resume</a>
+    </section>
+    
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: ajaykumargorakanti3@gmail.com</p>
+        <p>Phone:8074704568</p>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 Your Name. All rights reserved.</p>
+    </footer>
+</body>
+</html>
