@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .calculator {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .display {
+            background-color: #333;
+            color: #fff;
+            text-align: right;
+            padding: 20px;
+            font-size: 2em;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .btn {
+            padding: 20px;
+            font-size: 1.5em;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            background-color: #f9f9f9;
+        }
+
+        .btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .operator {
+            background-color: #ff9500;
+            color: #fff;
+        }
+
+        .operator:hover {
+            background-color: #e08b00;
+        }
+
+        .equal {
+            grid-column: span 4;
+            background-color: #ff9500;
+            color: #fff;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .equal:hover {
+            background-color: #e08b00;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <button class="btn" data-value="7">7</button>
+            <button class="btn" data-value="8">8</button>
+            <button class="btn" data-value="9">9</button>
+            <button class="btn operator" data-value="/">/</button>
+            
+            <button class="btn" data-value="4">4</button>
+            <button class="btn" data-value="5">5</button>
+            <button class="btn" data-value="6">6</button>
+            <button class="btn operator" data-value="*">*</button>
+            
+            <button class="btn" data-value="1">1</button>
+            <button class="btn" data-value="2">2</button>
+            <button class="btn" data-value="3">3</button>
+            <button class="btn operator" data-value="-">-</button>
+            
+            <button class="btn" data-value="0">0</button>
+            <button class="btn" data-value=".">.</button>
+            <button class="btn" id="clear">C</button>
+            <button class="btn operator" data-value="+">+</button>
+            
+            <button class="btn equal" id="equal">=</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const display = document.getElementById('display');
+            const buttons = document.querySelectorAll('.btn');
+            const clearButton = document.getElementById('clear');
+            const equalButton = document.getElementById('equal');
+
+            let currentInput = '0';
+            let operator = null;
+            let previousInput = null;
+
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const value = this.getAttribute('data-value');
+
+                    if (value === '.' && currentInput.includes('.')) return;
+
+                    if (currentInput === '0' && value !== '.') {
+                        currentInput = value;
+                    } else {
+                        currentInput += value;
+                    }
+
+                    display.textContent = currentInput;
+                });
+            });
+
+            document.querySelectorAll('.operator').forEach(button => {
+                button.addEventListener('click', function() {
+                    if (previousInput !== null) {
+                        calculate();
+                    }
+
+                    operator = this.getAttribute('data-value');
+                    previousInput = currentInput;
+                    currentInput = '0';
+                });
+            });
+
+            clearButton.addEventListener('click', function() {
+                currentInput = '0';
+                previousInput = null;
+                operator = null;
+                display.textContent = '0';
+            });
+
+            equalButton.addEventListener('click', calculate);
+
+            function calculate() {
+                let result;
+                const prev = parseFloat(previousInput);
+                const current = parseFloat(currentInput);
+
+                if (isNaN(prev) || isNaN(current)) return;
+
+                switch (operator) {
+                    case '+':
+                        result = prev + current;
+                        break;
+                    case '-':
+                        result = prev - current;
+                        break;
+                    case '*':
+                        result = prev * current;
+                        break;
+                    case '/':
+                        result = prev / current;
+                        break;
+                    default:
+                        return;
+                }
+
+                currentInput = result.toString();
+                operator = null;
+                previousInput = null;
+                display.textContent = currentInput;
+            }
+        });
+    </script>
+</body>
+</html>
